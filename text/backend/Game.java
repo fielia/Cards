@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Game {
 	
 	/**
-	 * suit priority order for project
+	 * suit priority order for project, ordered highest to lowest
 	 */
 	static final String[] suits = new String[] {"Hearts", "Spades", "Clubs", "Diamonds"};
 	

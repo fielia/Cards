@@ -31,20 +31,36 @@ class Card extends BaseCard {
 		};
 	}
 	
+	/**
+	 * moves the card to new coordinates
+	 * @param x x coordinate of the new position
+	 * @param y y coordinate of the new position
+	 */
 	public void moveTo(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
 	
+	/**
+	 * calculates if a set of coordinates is within the card
+	 * @param x x coordinate of position in question
+	 * @param y y coordinate of position in question
+	 * @return whether the position is overlapping the card
+	 */
 	public boolean contains(int x, int y) {
-		return (x > this.x && x < (this.x + getWidth()) &&
-				        y > this.y && y < (this.y + getHeight()));
+		return (x > this.x && x < (this.x + getWidth()) && y > this.y && y < (this.y + getHeight()));
 	}
 	
+	/**
+	 * @return the width of the card
+	 */
 	public int getWidth() {
 		return image.getIconWidth();
 	}
 	
+	/**
+	 * @return the height of the card
+	 */
 	public int getHeight() {
 		return image.getIconHeight();
 	}
@@ -70,14 +86,25 @@ class Card extends BaseCard {
 		this.counted = counted;
 	}
 	
+	/**
+	 * @return x coordinate of the card
+	 */
 	public int getX() {
 		return x;
 	}
 	
+	/**
+	 * @return y coordinate of the card
+	 */
 	public int getY() {
 		return y;
 	}
 	
+	/**
+	 * draws the card
+	 * @param g idk
+	 * @param c component to draw on
+	 */
 	public void draw(Graphics g, Component c) {
 		image.paintIcon(c, g, x, y);
 	}
