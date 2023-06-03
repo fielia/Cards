@@ -5,12 +5,12 @@ package gui.backend;
 import java.awt.*;
 import javax.swing.*;
 
-class Card extends BaseCard {
+public class Card extends BaseCard {
 	private final ImageIcon image;
 	private int x;
 	private int y;
-	private int rankValue;
-	private boolean counted;
+	int rankValue;
+	boolean counted;
 	
 	/**
 	 * creates a card object
