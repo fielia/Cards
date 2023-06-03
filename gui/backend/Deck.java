@@ -30,4 +30,45 @@ public class Deck extends ArrayList<Card> {
 		this.remove(card);
 		this.add(card);
 	}
+
+	/**
+	 * changes the value of each card of a certain rank
+	 *
+	 * @param ranks list of ranks of cards to change
+	 * @param values list new value of the cards
+	 * @throws IndexOutOfBoundsException ranks and values must be of equal length
+	 */
+	public void modifyRanks(String[] ranks, int[] values) throws IndexOutOfBoundsException {
+		if (ranks.length != values.length) {
+			throw new IndexOutOfBoundsException("Ranks and Values must be of the same length");
+		}
+		for (int i = 0; i < ranks.length; i++) {
+			for (Card card : this) {
+				if (card.getRank().equals(ranks[i])) {
+					card.rankValue = values[i];
+				}
+			}
+		}
+	}
+
+	/**
+	 * draws the top card in the deck and removes it
+	 *
+	 * @return the top card
+	 */
+	public Card draw() {
+		return draw(0);
+	}
+
+	/**
+	 * draws the card at position 'index' in the deck and removes it
+	 *
+	 * @param index index of card extracting from the deck - must be valid for the list
+	 * @return the card at position 'index'
+	 */
+	public Card draw(int index) {
+		Card drawnCard = this.get(index);
+		this.remove(index);
+		return drawnCard;
+	}
 }
