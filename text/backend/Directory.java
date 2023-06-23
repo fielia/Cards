@@ -1,11 +1,21 @@
 package text.backend;
 
-import text.games.*;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import text.games.BlackJack;
+import text.games.BlackJack2;
+import text.games.CrazyEights;
+import text.games.GOPS;
+import text.games.GinRummy;
+import text.games.GoFish;
+import text.games.President;
+import text.games.SevenEight;
+import text.games.Trash;
+import text.games.War1;
+import text.games.War2;
 
 public class Directory {
 	

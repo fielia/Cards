@@ -2,8 +2,10 @@
 
 package gui.backend;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Component;
+import java.awt.Graphics;
+
+import javax.swing.ImageIcon;
 
 public class Card extends BaseCard {
 	private final ImageIcon image;

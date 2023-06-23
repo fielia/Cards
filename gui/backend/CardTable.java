@@ -2,10 +2,15 @@
 
 package gui.backend;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-import javax.swing.*;
+
+import javax.swing.JComponent;
 
 public class CardTable extends JComponent implements MouseListener, MouseMotionListener {
 	

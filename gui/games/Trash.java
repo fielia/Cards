@@ -1,13 +1,13 @@
 package gui.games;
 
-import text.backend.Card;
-import text.backend.Deck;
-import text.backend.Game;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
+import text.backend.Card;
+import text.backend.Deck;
+import text.backend.Game;
 
 public class Trash extends Game {
 	

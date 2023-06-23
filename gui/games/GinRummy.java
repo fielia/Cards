@@ -1,13 +1,13 @@
 package gui.games;
 
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import text.backend.Card;
 import text.backend.Deck;
 import text.backend.Game;
 import text.backend.Hand;
-
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class GinRummy extends Game {
 	

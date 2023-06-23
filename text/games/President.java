@@ -1,14 +1,14 @@
 package text.games;
 
-import text.backend.Card;
-import text.backend.Deck;
-import text.backend.Game;
-import text.backend.Hand;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import text.backend.Card;
+import text.backend.Deck;
+import text.backend.Game;
+import text.backend.Hand;
 
 public class President extends Game {
 	

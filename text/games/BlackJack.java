@@ -1,8 +1,11 @@
 package text.games;
 
-import text.backend.*;
-
 import java.util.Scanner;
+
+import text.backend.Card;
+import text.backend.Deck;
+import text.backend.Game;
+import text.backend.Hand;
 
 public class BlackJack extends Game {
 	

@@ -1,10 +1,12 @@
 package gui.games;
 
-import gui.backend.*;
-
+import java.awt.LayoutManager;
 import java.util.Scanner;
 
-import java.awt.LayoutManager;
+import gui.backend.BaseGame;
+import gui.backend.Card;
+import gui.backend.Deck;
+import gui.backend.Hand;
 
 public class BlackJack extends BaseGame {
 	

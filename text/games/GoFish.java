@@ -1,11 +1,11 @@
 package text.games;
 
-import text.backend.Deck;
-import text.backend.Game;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import text.backend.Deck;
+import text.backend.Game;
 
 public class GoFish extends Game {
 	

@@ -1,14 +1,13 @@
 package gui.backend;
 
+import java.awt.BorderLayout;
+import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
-
-import java.awt.BorderLayout;
-import java.awt.LayoutManager;
 
 public class BaseGame extends JFrame {
 	

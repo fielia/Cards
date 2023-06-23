@@ -1,12 +1,12 @@
 package gui.games;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import text.backend.Card;
 import text.backend.Deck;
 import text.backend.Game;
 import text.backend.Hand;
-
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class SevenEight extends Game {
 	
