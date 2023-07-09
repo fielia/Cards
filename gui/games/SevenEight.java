@@ -1,4 +1,4 @@
-package text.games;
+package gui.games;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

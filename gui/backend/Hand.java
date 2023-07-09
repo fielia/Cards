@@ -1,8 +1,6 @@
-package text.backend;
+package gui.backend;
 
-import java.util.ArrayList;
-
-public class Hand extends ArrayList<Card> {
+public class Hand extends Deck {
 
 	/**
 	 * creates empty hand
@@ -66,12 +64,12 @@ public class Hand extends ArrayList<Card> {
 	public void printHand2() throws InterruptedException { // for 7-8 and GOPS
 		organizeCards();
 		int width = this.size() > 9 ? 2 : 1;
-		for (String suit : Game.suits) {
+		for (String suit : BaseGame.suits) {
 			for (int i = 0; i < this.size(); i++) {
 				if (this.get(i).getSuit().equals(suit)) {
 					this.get(i).setCounted(false);
 					System.out.printf("%" + width + "d: " + this.get(i) + "\n", i + 1);
-					Game.sleep(75);
+					BaseGame.sleep(75);
 				}
 			}
 		}
@@ -84,7 +82,7 @@ public class Hand extends ArrayList<Card> {
 		Hand newHand = new Hand();
 		int totalCardsAdded = 0;
 		int newIndex = 0;
-		for (String suit : Game.suits) {
+		for (String suit : BaseGame.suits) {
 			for (Card card : this) {
 				if (card.getSuit().equals(suit)) {
 					try {
@@ -113,7 +111,7 @@ public class Hand extends ArrayList<Card> {
 	 */
 	private void organizeBySuit() {
 		Hand newHand = new Hand();
-		for (String suit : Game.suits) {
+		for (String suit : BaseGame.suits) {
 			for (Card card : this) {
 				if (card.getSuit().equals(suit)) {
 					newHand.add(card);

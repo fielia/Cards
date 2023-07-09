@@ -1,12 +1,18 @@
-package text.backend;
+package gui.backend;
 
+import java.awt.BorderLayout;
+import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Game {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+
+public class BaseGame extends JFrame {
 
 	/**
-	 * suit priority order for project, ordered highest to lowest
+	 * suit priority order for project
 	 */
 	static final String[] suits = new String[] { "Hearts", "Spades", "Clubs", "Diamonds" };
 
@@ -14,6 +20,24 @@ public class Game {
 	 * project names (global)
 	 */
 	private static final ArrayList<String> names = new ArrayList<>();
+
+	private JTextArea textArea;
+	private JButton button;
+
+	public BaseGame(String title, int width, int height, LayoutManager layout) {
+		super(title);
+
+		this.setLayout(layout);
+
+		textArea = new JTextArea();
+		button = new JButton("Click Me!");
+
+		add(textArea, BorderLayout.CENTER);
+		add(button, BorderLayout.SOUTH);
+
+		this.setSize(width, height);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
 
 	/**
 	 * returns the requested player's name

@@ -1,14 +1,24 @@
 package text.backend;
 
-import text.games.*;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import text.games.BlackJack;
+import text.games.BlackJack2;
+import text.games.CrazyEights;
+import text.games.GOPS;
+import text.games.GinRummy;
+import text.games.GoFish;
+import text.games.President;
+import text.games.SevenEight;
+import text.games.Trash;
+import text.games.War1;
+import text.games.War2;
+
 public class Directory {
-	
+
 	/**
 	 * prompts player to choose a game to play
 	 *
@@ -18,7 +28,7 @@ public class Directory {
 	 */
 	private static Game getGame(ArrayList<Game> games) throws InterruptedException {
 		int highestName = 0, highestPeople = 0, highestCost = 0;
-		for (Game game: games) {
+		for (Game game : games) {
 			highestName = Math.max(game.toString().length(), highestName);
 			highestPeople = Math.max(String.valueOf(game.playerLimit()).length(), highestPeople);
 			highestCost = Math.max(String.valueOf(game.cost()).length(), highestCost);
@@ -27,17 +37,17 @@ public class Directory {
 		for (int i = 0; i < games.size(); i++) {
 			String limitSuffix = games.get(i).playerLimit() == 1 ? "person" : "people";
 			int width = games.size() > 9 ? 2 : 1;
-			
+
 			System.out.printf("%" + width + "d: %-" + (highestName + 1) + "s ", i + 1, games.get(i) + ".");
 			System.out.printf("As many as %" + highestPeople + "d %-6s can play. ", games.get(i).playerLimit(),
-			                  limitSuffix);
+					limitSuffix);
 			System.out.printf("It costs %" + highestCost + "d coins to play.\n\n", games.get(i).cost());
 			Game.sleep(500);
 		}
 		while (true) {
 			try {
 				System.out.println("\nYou have " + Game.getCoins() + " coins.\nWhich game do you want to play? Select" +
-						                   " the corresponding number, or input 0 to exit.");
+						" the corresponding number, or input 0 to exit.");
 				int index = scanner.nextInt();
 				scanner.nextLine();
 				if (index < 0 || index > games.size()) {
@@ -54,28 +64,30 @@ public class Directory {
 			scanner.close();
 		}
 	}
-	
+
 	public static void main(String[] args) throws InterruptedException {
 		System.out.println("\n\n\n\n\n");
 		System.out.println("Welcome to the Virtual Card Deck! We have numerous games to choose from, each of which " +
-				                   "supply a virtual spin to a classic game! This experience is fueled by coins, " +
-				                   "which you need to play games. You earn coins after wins! Once you lose too many " +
-				                   "coins, we automatically refill them for you.\n");
+				"supply a virtual spin to a classic game! This experience is fueled by coins, " +
+				"which you need to play games. You earn coins after wins! Once you lose too many " +
+				"coins, we automatically refill them for you.\n");
 		Game.addCoins(100);
 		Game.promptName(0, "Please enter your name, so we can personalize your experience: ");
-		ArrayList<Game> games = new ArrayList<>() {{
-			add(new BlackJack());
-			add(new BlackJack2());
-			add(new CrazyEights());
-			add(new GinRummy());
-			add(new GoFish());
-			add(new GOPS());
-			add(new President());
-			add(new SevenEight());
-			add(new Trash());
-			add(new War1());
-			add(new War2());
-		}};
+		ArrayList<Game> games = new ArrayList<>() {
+			{
+				add(new BlackJack());
+				add(new BlackJack2());
+				add(new CrazyEights());
+				add(new GinRummy());
+				add(new GoFish());
+				add(new GOPS());
+				add(new President());
+				add(new SevenEight());
+				add(new Trash());
+				add(new War1());
+				add(new War2());
+			}
+		};
 		Collections.shuffle(games);
 		Scanner scanner = new Scanner(System.in);
 		while (true) {

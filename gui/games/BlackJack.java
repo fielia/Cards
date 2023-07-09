@@ -1,20 +1,22 @@
-package text.games;
+package gui.games;
 
+import java.awt.LayoutManager;
 import java.util.Scanner;
 
-import text.backend.Card;
-import text.backend.Deck;
-import text.backend.Game;
-import text.backend.Hand;
+import gui.backend.BaseGame;
+import gui.backend.Card;
+import gui.backend.Deck;
+import gui.backend.Hand;
 
-public class BlackJack extends Game {
+public class BlackJack extends BaseGame {
 
 	public int cost() {
 		return 10;
 	}
 
 	public String rules() {
-		return "The goal of this game is to get the total sum of your cards to be greater than the Dealer's, while " +
+		return "The goal of this BaseGame is to get the total sum of your cards to be greater than the Dealer's, while "
+				+
 				"not going over 21. Aces are worth 1 point in this version, number cards are worth their rank " +
 				"value, and Jacks, Queens, and Kings are worth 10 points. If you 'bust', or go over 21 points," +
 				" the Dealer wins one point, and vice versa. If neither goes over 21, whoever gets the larger " +
@@ -38,6 +40,10 @@ public class BlackJack extends Game {
 		return 1;
 	}
 
+	public BlackJack(String title, int width, int height, LayoutManager layout) {
+		super(title, width, height, layout);
+	}
+
 	/**
 	 * checks how many overall points the player and computer have
 	 *
@@ -55,7 +61,7 @@ public class BlackJack extends Game {
 					"Maybe next time you'll win!");
 			outcome = 0;
 		} else if (pointA > pointB) {
-			System.out.println(Game.getName(0) + ", you win by " + (pointA - pointB) + " point" + suffix + "! " +
+			System.out.println(BaseGame.getName(0) + ", you win by " + (pointA - pointB) + " point" + suffix + "! " +
 					"Congratulations!");
 			outcome = 2;
 		} else {
@@ -149,7 +155,7 @@ public class BlackJack extends Game {
 					Thread.sleep(2000);
 				} else if (valueB < valueA) {
 					Thread.sleep(1000);
-					System.out.println("You win, " + Game.getName(0) + "! Congratulations!");
+					System.out.println("You win, " + BaseGame.getName(0) + "! Congratulations!");
 					pointA++;
 					Thread.sleep(2000);
 				} else {
@@ -166,7 +172,7 @@ public class BlackJack extends Game {
 					System.out.println("You did not type 'y' or 'n'. Please choose one.");
 				}
 				Thread.sleep(2000);
-				System.out.println("Would you like to play again, " + Game.getName(0) + "?");
+				System.out.println("Would you like to play again, " + BaseGame.getName(0) + "?");
 				again = scanner.next().toLowerCase().charAt(0);
 			} while (again != 'n' && again != 'y');
 		}
