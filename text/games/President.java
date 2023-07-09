@@ -1,32 +1,32 @@
 package text.games;
 
-import text.backend.Card;
-import text.backend.Deck;
-import text.backend.Game;
-import text.backend.Hand;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import text.backend.Card;
+import text.backend.Deck;
+import text.backend.Game;
+import text.backend.Hand;
+
 public class President extends Game {
-	
+
 	public int cost() {
 		return 30;
 	}
-	
+
 	public String rules() {
 		return "This game has anywhere from 3 to 7 players, and players are dealt the entire deck. In this game, Aces" +
-				       " are highest in rank, though 2s are ranked higher. The first player plays any number of any " +
-				       "card rank of their choice, and every other player has to match or beat the rank and the " +
-				       "number of cards played, UNLESS they play a two or play all the rest of the rank currently on " +
-				       "top, making the amount of that rank in the pile reach 4, regardless of how many cards you " +
-				       "place to do that. Both of these plays result in the pile being 'cleared', and the center " +
-				       "starting fresh with the player that cleared it. If you can't play any cards, you will pass, " +
-				       "and if everyone passes, the player that last played plays again!";
+				" are highest in rank, though 2s are ranked higher. The first player plays any number of any " +
+				"card rank of their choice, and every other player has to match or beat the rank and the " +
+				"number of cards played, UNLESS they play a two or play all the rest of the rank currently on " +
+				"top, making the amount of that rank in the pile reach 4, regardless of how many cards you " +
+				"place to do that. Both of these plays result in the pile being 'cleared', and the center " +
+				"starting fresh with the player that cleared it. If you can't play any cards, you will pass, " +
+				"and if everyone passes, the player that last played plays again!";
 	}
-	
+
 	/**
 	 * list of player's hands
 	 */
@@ -47,7 +47,7 @@ public class President extends Game {
 	 * Scanner variable
 	 */
 	private Scanner scanner;
-	
+
 	/**
 	 * Creates first player
 	 */
@@ -55,15 +55,15 @@ public class President extends Game {
 		hands.add(new Hand());
 		hasPassed.add(false);
 	}
-	
+
 	public String toString() {
 		return "President";
 	}
-	
+
 	protected int playerLimit() {
 		return 7;
 	}
-	
+
 	/**
 	 * checks if player only has 2s in their hand
 	 *
@@ -78,26 +78,26 @@ public class President extends Game {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * @return if all players have passed their turn
 	 */
 	private boolean checkAllTrue() {
-		for (boolean bool: hasPassed) {
+		for (boolean bool : hasPassed) {
 			if (!bool) {
 				return false;
 			}
 		}
 		return true;
 	}
-	
+
 	/**
 	 * sets all values in hasPassed to false
 	 */
 	private void setFalse() {
 		Collections.fill(hasPassed, false);
 	}
-	
+
 	/**
 	 * prints placement of all players and their point values
 	 *
@@ -148,7 +148,7 @@ public class President extends Game {
 			System.out.println("!");
 			moveOn = false;
 			place += next.size();
-			for (boolean bool: used) {
+			for (boolean bool : used) {
 				if (!bool) {
 					moveOn = true;
 					break;
@@ -157,11 +157,11 @@ public class President extends Game {
 		}
 		Thread.sleep(1000);
 	}
-	
+
 	/**
 	 * unique printHand() method
 	 *
-	 * @param hand hand to print out
+	 * @param hand     hand to print out
 	 * @param organize if we want to organize the cards
 	 */
 	private void printHand(Hand hand, boolean organize) {
@@ -174,7 +174,7 @@ public class President extends Game {
 			System.out.printf("%" + width + "d: " + hand.get(i) + "\n", i + 1);
 		}
 	}
-	
+
 	/**
 	 * checks if the player can play anything
 	 *
@@ -189,14 +189,16 @@ public class President extends Game {
 					amt++;
 				}
 			}
-			if ((amt >= currentAmount && hand.get(i).getRankValue() >= highestRank) || (hand.get(i).getRankValue() == highestRank
-					                     && amt + currentAmount == 4) || (hand.get(i).getRankValue() == 15)) {
+			if ((amt >= currentAmount && hand.get(i).getRankValue() >= highestRank)
+					|| (hand.get(i).getRankValue() == highestRank
+							&& amt + currentAmount == 4)
+					|| (hand.get(i).getRankValue() == 15)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	/**
 	 * prints the top cards of all hands
 	 *
@@ -207,17 +209,17 @@ public class President extends Game {
 			System.out.println("Hand #" + (i + 1) + ": " + hands.get(i).get(0));
 		}
 	}
-	
+
 	/**
 	 * initializes a round by filling hands
 	 *
 	 * @param numPeople number of people playing
-	 * @param hands list of hands for the people playing
+	 * @param hands     list of hands for the people playing
 	 */
 	private void initRound(int numPeople, ArrayList<Hand> hands) {
 		int loopCount = 0;
 		Deck deck = new Deck();
-		deck.modifyRanks(new String[] {"2"}, new int[] {15});
+		deck.modifyRanks(new String[] { "2" }, new int[] { 15 });
 		while (true) {
 			loopCount++;
 			try {
@@ -233,7 +235,7 @@ public class President extends Game {
 			}
 		}
 	}
-	
+
 	/**
 	 * plays a full round
 	 *
@@ -296,7 +298,7 @@ public class President extends Game {
 			}
 		} while (nextHierarchy != lastHierarchy);
 	}
-	
+
 	/**
 	 * single player turn
 	 *
@@ -334,7 +336,7 @@ public class President extends Game {
 					System.out.println("You're the first to play! You can play anything you want!\n");
 				}
 				System.out.print("Which card do you want to play? Enter the number here, or enter 0 to pass your " +
-						                 "turn: ");
+						"turn: ");
 				index = scanner.nextInt() - 1;
 				if (index == -1) {
 					System.out.println("You skipped your turn!");
@@ -342,7 +344,8 @@ public class President extends Game {
 					return true;
 				}
 				for (Card card : hand) {
-					if (card.getRankValue() == hand.get(index).getRankValue() && !card.getSuit().equals(hand.get(index).getSuit())) {
+					if (card.getRankValue() == hand.get(index).getRankValue()
+							&& !card.getSuit().equals(hand.get(index).getSuit())) {
 						total++;
 					}
 				}
@@ -372,8 +375,9 @@ public class President extends Game {
 						min = currentAmount;
 					}
 					if (min < total) {
-						System.out.print("How many " + hand.get(index).getRank() + "s do you want to play? Enter a number" +
-								                 " from " + min + " to " + total + ": ");
+						System.out.print(
+								"How many " + hand.get(index).getRank() + "s do you want to play? Enter a number" +
+										" from " + min + " to " + total + ": ");
 						amt = scanner.nextInt();
 					} else {
 						amt = total;
@@ -419,7 +423,7 @@ public class President extends Game {
 		Thread.sleep(2000);
 		return false;
 	}
-	
+
 	/**
 	 * simulates one player taking a card from another
 	 *
@@ -427,8 +431,9 @@ public class President extends Game {
 	 * @param taken index of player getting a card taken
 	 */
 	private void takeCard(int taker, int taken) {
-		System.out.println("\n\n" + Game.getName(taker) + ", you have to take a card from " + Game.getName(taken) + ".\nHere's " +
-				                   "their hand:");
+		System.out.println(
+				"\n\n" + Game.getName(taker) + ", you have to take a card from " + Game.getName(taken) + ".\nHere's " +
+						"their hand:");
 		printHand(hands.get(taken), false);
 		System.out.println("\n\nAnd here's yours:");
 		printHand(hands.get(taker), false);
@@ -465,7 +470,7 @@ public class President extends Game {
 		}
 		System.out.println("Nice, the " + takenCard + " and the " + givenCard + " have been traded!");
 	}
-	
+
 	public int play() throws InterruptedException {
 		System.out.println("\n----------------------------\n\nLet's play President!\n");
 		int numPeople = 0;

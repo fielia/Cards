@@ -1,23 +1,26 @@
 package text.games;
 
-import text.backend.*;
-
 import java.util.Scanner;
 
+import text.backend.Card;
+import text.backend.Deck;
+import text.backend.Game;
+import text.backend.Hand;
+
 public class BlackJack extends Game {
-	
+
 	public int cost() {
 		return 10;
 	}
-	
+
 	public String rules() {
 		return "The goal of this game is to get the total sum of your cards to be greater than the Dealer's, while " +
-				       "not going over 21. Aces are worth 1 point in this version, number cards are worth their rank " +
-				       "value, and Jacks, Queens, and Kings are worth 10 points. If you 'bust', or go over 21 points," +
-				       " the Dealer wins one point, and vice versa. If neither goes over 21, whoever gets the larger " +
-				       "amount of points in their hand wins, or both win a point if it's a tie.";
+				"not going over 21. Aces are worth 1 point in this version, number cards are worth their rank " +
+				"value, and Jacks, Queens, and Kings are worth 10 points. If you 'bust', or go over 21 points," +
+				" the Dealer wins one point, and vice versa. If neither goes over 21, whoever gets the larger " +
+				"amount of points in their hand wins, or both win a point if it's a tie.";
 	}
-	
+
 	/**
 	 * point value for the player
 	 */
@@ -26,15 +29,15 @@ public class BlackJack extends Game {
 	 * point value for the computer
 	 */
 	private int pointB = 0;
-	
+
 	public String toString() {
 		return "BlackJack (version 1)";
 	}
-	
+
 	protected int playerLimit() {
 		return 1;
 	}
-	
+
 	/**
 	 * checks how many overall points the player and computer have
 	 *
@@ -49,11 +52,11 @@ public class BlackJack extends Game {
 		Thread.sleep(1000);
 		if (pointB > pointA) {
 			System.out.println("Dealer wins by " + (pointB - pointA) + " point" + suffix + "! " +
-					                   "Maybe next time you'll win!");
+					"Maybe next time you'll win!");
 			outcome = 0;
 		} else if (pointA > pointB) {
 			System.out.println(Game.getName(0) + ", you win by " + (pointA - pointB) + " point" + suffix + "! " +
-					                   "Congratulations!");
+					"Congratulations!");
 			outcome = 2;
 		} else {
 			System.out.println("It's a tie!");
@@ -64,7 +67,7 @@ public class BlackJack extends Game {
 		pointB = 0;
 		return outcome;
 	}
-	
+
 	/**
 	 * @param hand list of cards to calculate value from
 	 * @return value of hand parameter
@@ -76,14 +79,14 @@ public class BlackJack extends Game {
 		}
 		return value;
 	}
-	
+
 	public int play() throws InterruptedException {
 		Scanner scanner = new Scanner(System.in);
 		char again = 'y';
 		while (again == 'y') {
 			System.out.println("\n----------------------------\n\nLet's play Blackjack!\n");
 			Deck deck = new Deck();
-			deck.modifyRanks(new String[] {"Ace", "King", "Queen", "Jack"}, new int[] {1, 10, 10, 10});
+			deck.modifyRanks(new String[] { "Ace", "King", "Queen", "Jack" }, new int[] { 1, 10, 10, 10 });
 			Hand handA = new Hand(2, deck, 2);
 			Hand handB = new Hand(2, deck, 2);
 			int valueA;
@@ -165,8 +168,7 @@ public class BlackJack extends Game {
 				Thread.sleep(2000);
 				System.out.println("Would you like to play again, " + Game.getName(0) + "?");
 				again = scanner.next().toLowerCase().charAt(0);
-			}
-			while (again != 'n' && again != 'y');
+			} while (again != 'n' && again != 'y');
 		}
 		System.out.println("OK. Hope to see you soon!");
 		scanner.close();

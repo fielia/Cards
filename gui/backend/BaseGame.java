@@ -1,5 +1,7 @@
 package gui.backend;
 
+import java.awt.BorderLayout;
+import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,16 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
-import java.awt.BorderLayout;
-import java.awt.LayoutManager;
-
 public class BaseGame extends JFrame {
-	
+
 	/**
 	 * suit priority order for project
 	 */
-	static final String[] suits = new String[] {"Hearts", "Spades", "Clubs", "Diamonds"};
-	
+	static final String[] suits = new String[] { "Hearts", "Spades", "Clubs", "Diamonds" };
+
 	/**
 	 * project names (global)
 	 */
@@ -39,7 +38,6 @@ public class BaseGame extends JFrame {
 		this.setSize(width, height);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
 	/**
 	 * returns the requested player's name
 	 *
@@ -49,7 +47,6 @@ public class BaseGame extends JFrame {
 	public static String getName(int index) {
 		return names.get(index);
 	}
-	
 	/**
 	 * checks if the 'names' list has a player's value
 	 *
@@ -59,7 +56,6 @@ public class BaseGame extends JFrame {
 	protected static boolean hasPlayer(int playerNum) {
 		return names.size() > playerNum;
 	}
-	
 	/**
 	 * adds or changes the name of a player in the list
 	 *
@@ -104,7 +100,6 @@ public class BaseGame extends JFrame {
 		scanner.close();
 	}
 	
-	
 	/**
 	 * amount of coins the player has to play with
 	 */
@@ -144,8 +139,6 @@ public class BaseGame extends JFrame {
 	public int cost() {
 		return 0;
 	}
-	
-	
 	/**
 	 * addition to project to remove busy-waiting warnings with Thread.sleep()
 	 *

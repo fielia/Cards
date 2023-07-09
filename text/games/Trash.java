@@ -1,33 +1,33 @@
 package text.games;
 
-import text.backend.Card;
-import text.backend.Deck;
-import text.backend.Game;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import text.backend.Card;
+import text.backend.Deck;
+import text.backend.Game;
+
 public class Trash extends Game {
-	
+
 	public int cost() {
 		return 20;
 	}
-	
+
 	public String rules() {
 		return "There are two players who, initially, are dealt 10 cards. Each turn, a player can choose to take a " +
-				       "card from the deck or take the top card of the discard pile. If the card's rank is less than " +
-				       "or equal to the amount of cards they have, they place the card in the correct spot. Then they" +
-				       " look at the card previously there. If that card's rank is within the right range, and is not" +
-				       " the same as an already revealed spot, they place it. The process repeats until you get a " +
-				       "King, a Queen, or an already revealed card. Then, the player's turn ends, and the other " +
-				       "player starts their turn. If a player picks up a Jack, they can choose where to put it, and " +
-				       "then can always pick it up again.\nOnce all the cards in a player's hand are revealed, the " +
-				       "round is over, and the player that won will be dealt 1 less card the next round. If a player " +
-				       "wins a round where they have only one card, they win the entire game!";
+				"card from the deck or take the top card of the discard pile. If the card's rank is less than " +
+				"or equal to the amount of cards they have, they place the card in the correct spot. Then they" +
+				" look at the card previously there. If that card's rank is within the right range, and is not" +
+				" the same as an already revealed spot, they place it. The process repeats until you get a " +
+				"King, a Queen, or an already revealed card. Then, the player's turn ends, and the other " +
+				"player starts their turn. If a player picks up a Jack, they can choose where to put it, and " +
+				"then can always pick it up again.\nOnce all the cards in a player's hand are revealed, the " +
+				"round is over, and the player that won will be dealt 1 less card the next round. If a player " +
+				"wins a round where they have only one card, they win the entire game!";
 	}
-	
+
 	/**
 	 * unique printHand() method
 	 *
@@ -40,16 +40,16 @@ public class Trash extends Game {
 			System.out.printf("%" + width + "d: %s\n", i + 1, value);
 		}
 	}
-	
+
 	private boolean allRevealed(ArrayList<Card> hand) {
-		for (Card card: hand) {
+		for (Card card : hand) {
 			if (!card.isRevealed()) {
 				return false;
 			}
 		}
 		return true;
 	}
-	
+
 	/**
 	 * the amount of cards in player A's hand
 	 */
@@ -62,17 +62,16 @@ public class Trash extends Game {
 	 * the card in the center of the pile
 	 */
 	private Card centerCard;
-	
-	
+
 	public String toString() {
 		return "Trash";
 	}
-	
+
 	@Override
 	protected int playerLimit() {
 		return 2;
 	}
-	
+
 	/**
 	 * places a picked up card
 	 *
@@ -98,7 +97,7 @@ public class Trash extends Game {
 						System.out.println("\nThat's a random Jack!\nHere is your hand again:");
 						printHand(hand);
 						System.out.print("Input the index of the card you want to replace with the Jack, or 0 if you " +
-								                 "want to place it in a random spot: ");
+								"want to place it in a random spot: ");
 						index = scanner.nextInt() - 1;
 						if (index == -1) {
 							do {
@@ -156,17 +155,19 @@ public class Trash extends Game {
 		scanner.close();
 		return card;
 	}
-	
+
 	/**
 	 * one player's turn
-	 * @param stock the stock for the game
-	 * @param hand the player's hand
-	 * @param garbage if the most recent card placed down is a 'garbage' card
+	 * 
+	 * @param stock       the stock for the game
+	 * @param hand        the player's hand
+	 * @param garbage     if the most recent card placed down is a 'garbage' card
 	 * @param playerIndex the index of the player (used to get names)
 	 * @return the new value for garbage
 	 * @throws InterruptedException Thread.sleep() throws this
 	 */
-	private boolean turn(ArrayList<Card> stock, ArrayList<Card> hand, boolean garbage, int playerIndex) throws InterruptedException {
+	private boolean turn(ArrayList<Card> stock, ArrayList<Card> hand, boolean garbage, int playerIndex)
+			throws InterruptedException {
 		Scanner scanner = new Scanner(System.in);
 		Game.sleep(3000);
 		char pickUp;
@@ -176,9 +177,9 @@ public class Trash extends Game {
 		while (true) {
 			if (!garbage) {
 				System.out.println("\nDo you want to take a card from the deck or take the card " +
-						                   Game.getName((playerIndex + 1) % 2) + " just used, the " + centerCard +
-						                   "? Input 'deck' to take from the deck, or 'take' to take the card just " +
-						                   "placed down.");
+						Game.getName((playerIndex + 1) % 2) + " just used, the " + centerCard +
+						"? Input 'deck' to take from the deck, or 'take' to take the card just " +
+						"placed down.");
 				while (true) {
 					try {
 						pickUp = scanner.nextLine().toLowerCase().charAt(0);
@@ -210,7 +211,7 @@ public class Trash extends Game {
 		scanner.close();
 		return centerCard.getRank().equals("King");
 	}
-	
+
 	public int play() throws InterruptedException {
 		int roundNo = 1;
 		System.out.println("\n----------------------------\n\nLet's play Trash!\n");
@@ -265,11 +266,11 @@ public class Trash extends Game {
 			System.out.println("\nRound Over!!");
 			if (numberOfCardsA == 0) {
 				System.out.println("Wow! " + Game.getName(0) + " beat " + Game.getName(1) + " by " +
-						                   numberOfCardsB + " cards in " + (roundNo) + " rounds! Nice work!");
+						numberOfCardsB + " cards in " + (roundNo) + " rounds! Nice work!");
 				break;
 			} else if (numberOfCardsB == 0) {
 				System.out.println("Wow! " + Game.getName(1) + " beat " + Game.getName(0) + " by " +
-						                   numberOfCardsA + " cards in " + (roundNo) + " rounds! Nice work!");
+						numberOfCardsA + " cards in " + (roundNo) + " rounds! Nice work!");
 				break;
 			}
 			roundNo++;

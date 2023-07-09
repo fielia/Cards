@@ -2,12 +2,12 @@
 
 package gui.backend;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 public class Directory extends JFrame {
-	
+
 	private static final Deck deck = new Deck();
-	
+
 	public static void main(String[] args) {
 		Directory window = new Directory();
 		window.setTitle("Card Demo 1");
