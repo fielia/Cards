@@ -10,21 +10,21 @@ import text.backend.Game;
 import text.backend.Hand;
 
 public class CrazyEights extends Game {
-	
+
 	public int cost() {
 		return 30;
 	}
-	
+
 	public String rules() {
 		return "This multiplayer game has anywhere from 3 to 25 players, with the option to have all of them (except " +
-				       "one) be controlled by the computer. You have to choose a card from your hand that either has " +
-				       "the same rank as the card in the center, the same suit as the card in the center, or is an 8." +
-				       " If you can't play anything, you have to pick up a card. 8s are wild, meaning that the player" +
-				       " that played an 8 can change the suit to whatever they'd like. The first player to get rid of" +
-				       " all their cards wins! From there, players are ranked based on the amount of cards left in " +
-				       "their hand.\n";
+				"one) be controlled by the computer. You have to choose a card from your hand that either has " +
+				"the same rank as the card in the center, the same suit as the card in the center, or is an 8." +
+				" If you can't play anything, you have to pick up a card. 8s are wild, meaning that the player" +
+				" that played an 8 can change the suit to whatever they'd like. The first player to get rid of" +
+				" all their cards wins! From there, players are ranked based on the amount of cards left in " +
+				"their hand.\n";
 	}
-	
+
 	/**
 	 * the initial deck of cards
 	 */
@@ -41,15 +41,15 @@ public class CrazyEights extends Game {
 	 * the hands for each player (corresponds to 'names' field)
 	 */
 	private ArrayList<Hand> hands;
-	
+
 	public String toString() {
 		return "Crazy Eights";
 	}
-	
+
 	protected int playerLimit() {
 		return 40;
 	}
-	
+
 	/**
 	 * creates an array of all the possible cards a hand can play
 	 *
@@ -59,13 +59,14 @@ public class CrazyEights extends Game {
 	private ArrayList<Card> calcPossibleCards(Hand hand) {
 		ArrayList<Card> possibleCards = new ArrayList<>();
 		for (Card card : hand) {
-			if (card.getSuit().equals(centerCard.getSuit()) || card.getRank().equals(centerCard.getRank()) || card.getRankValue() == 8) {
+			if (card.getSuit().equals(centerCard.getSuit()) || card.getRank().equals(centerCard.getRank())
+					|| card.getRankValue() == 8) {
 				possibleCards.add(card);
 			}
 		}
 		return possibleCards;
 	}
-	
+
 	/**
 	 * randomizes turn order
 	 *
@@ -91,7 +92,7 @@ public class CrazyEights extends Game {
 		hands = newList2;
 		return comps;
 	}
-	
+
 	/**
 	 * one human player turn
 	 *
@@ -138,9 +139,9 @@ public class CrazyEights extends Game {
 				System.out.println("Input the suit name in proper capitals.");
 				newSuitString = scanner.nextLine();
 				if (!newSuitString.equals("Spades") && !newSuitString.equals("Hearts") &&
-						    !newSuitString.equals("Diamonds") && !newSuitString.equals("Clubs")) {
+						!newSuitString.equals("Diamonds") && !newSuitString.equals("Clubs")) {
 					System.out.println("I'm sorry, that's not a valid suit. Please only enter 'Spades', 'Hearts', " +
-							                   "'Diamonds', and 'Clubs'.");
+							"'Diamonds', and 'Clubs'.");
 					continue;
 				}
 				System.out.println("Done!");
@@ -155,7 +156,7 @@ public class CrazyEights extends Game {
 		System.out.println("Nice turn!!");
 		scanner.close();
 	}
-	
+
 	/**
 	 * one computer player turn
 	 *
@@ -171,10 +172,10 @@ public class CrazyEights extends Game {
 			if (stock.size() != 0) {
 				hand.add(stock.draw());
 				System.out.println("It took one from the deck, increasing its total card count to " + (hand.size()) +
-						                   ".");
+						".");
 			} else {
 				System.out.println("Because there aren't any cards in the deck, " +
-						                   "it passed its turn.");
+						"it passed its turn.");
 			}
 			return;
 		}
@@ -202,7 +203,7 @@ public class CrazyEights extends Game {
 		}
 		Thread.sleep(1500);
 	}
-	
+
 	public int play() throws InterruptedException {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("\n----------------------------\n\nLet's play Crazy Eights!\n");
@@ -210,7 +211,7 @@ public class CrazyEights extends Game {
 		do {
 			try {
 				System.out.print("How many players, human and computer, do you want to play with? Enter a number from" +
-						                 " 2 to 40: ");
+						" 2 to 40: ");
 				numPeople = scanner.nextInt();
 				scanner.nextLine();
 				if (numPeople < 2 || numPeople > 40) {
@@ -223,7 +224,7 @@ public class CrazyEights extends Game {
 		do {
 			try {
 				System.out.print("How many human players do you want to play with? Enter a number from 0 to " +
-						                 numPeople + ": ");
+						numPeople + ": ");
 				numComps = numPeople - scanner.nextInt();
 				scanner.nextLine();
 				if (numComps < 0 || numComps > numPeople) {
@@ -344,10 +345,10 @@ public class CrazyEights extends Game {
 			}
 		}
 		System.out.println("Congratulations " + names.get(winner) + "! You have gotten rid of all your cards first! " +
-				                   "You win! Good job!\n");
+				"You win! Good job!\n");
 		boolean[] hasBeenMentioned = new boolean[numPeople];
 		int place = 2;
-		for (String name: OGNames) {
+		for (String name : OGNames) {
 			OGHands.add(hands.get(names.indexOf(name)));
 		}
 		hasBeenMentioned[OGNames.indexOf(names.get(winner))] = true;
@@ -364,7 +365,7 @@ public class CrazyEights extends Game {
 					next.add(i);
 				}
 			}
-			
+
 			String suffix, suffix2 = smallest == 1 ? "" : "s";
 			if (place % 10 == 1 && place / 10 != 1) {
 				suffix = "st";

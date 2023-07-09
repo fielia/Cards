@@ -9,6 +9,7 @@ public class BaseCard {
 
 	/**
 	 * creates card image
+	 * 
 	 * @param rank rank of card
 	 * @param suit suit of card
 	 */
@@ -18,7 +19,7 @@ public class BaseCard {
 		this.frontImage = "![](./assets/card_images/" + suit.toLowerCase() + "_" + rank.toLowerCase() + ".png)";
 		this.revealed = false;
 	}
-	
+
 	/**
 	 * @return card image address
 	 */
@@ -29,28 +30,28 @@ public class BaseCard {
 			return BACK_IMAGE;
 		}
 	}
-	
+
 	/**
 	 * @return card rank
 	 */
 	public String getRank() {
 		return rank;
 	}
-	
+
 	/**
 	 * @return card suit
 	 */
 	public String getSuit() {
 		return suit;
 	}
-	
+
 	/**
 	 * @return if the card is face-up
 	 */
 	public boolean isRevealed() {
 		return revealed;
 	}
-	
+
 	/**
 	 * @param revealed whether the card should be face up or not
 	 */

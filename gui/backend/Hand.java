@@ -1,18 +1,20 @@
 package gui.backend;
 
 public class Hand extends Deck {
-	
+
 	/**
 	 * creates empty hand
 	 */
-	public Hand() {}
-	
+	public Hand() {
+	}
+
 	/**
 	 * fills the hand with some cards in the deck across all the hands
 	 *
-	 * @param num amount of cards to put in the deck
-	 * @param deck deck to extract cards from
-	 * @param playersToSplitCards the amount of players splitting the deck (simulates dealing)
+	 * @param num                 amount of cards to put in the deck
+	 * @param deck                deck to extract cards from
+	 * @param playersToSplitCards the amount of players splitting the deck
+	 *                            (simulates dealing)
 	 */
 	public Hand(int num, Deck deck, int playersToSplitCards) {
 		playersToSplitCards--;
@@ -26,38 +28,40 @@ public class Hand extends Deck {
 			}
 		}
 	}
-	
+
 	/**
 	 * changes this to hold another hand's cards
 	 *
 	 * @param hand list of cards to set this to
-	 * @throws IndexOutOfBoundsException parameter and object must have the same length
+	 * @throws IndexOutOfBoundsException parameter and object must have the same
+	 *                                   length
 	 */
 	private void changeTo(Hand hand) {
 		if (this.size() != hand.size()) {
 			throw new IndexOutOfBoundsException("Parameter Hand must have the same length as this Hand.");
 		}
- 		for (int i = 0; i < hand.size(); i++) {
+		for (int i = 0; i < hand.size(); i++) {
 			this.set(i, hand.get(i));
 		}
 	}
-	
+
 	/**
 	 * printing the cards in this list
 	 */
-	public void printHand() { //for BJ1, BJ2, Gin, and Crazy 8s
+	public void printHand() { // for BJ1, BJ2, Gin, and Crazy 8s
 		organizeCards();
 		int width = this.size() > 9 ? 2 : 1;
 		for (int i = 0; i < this.size(); i++) {
 			System.out.printf("%" + width + "d: " + this.get(i) + "\n", i + 1);
 		}
 	}
-	
+
 	/**
 	 * alternate printing the cards in this list
+	 * 
 	 * @throws InterruptedException Thread.sleep() throws this
 	 */
-	public void printHand2() throws InterruptedException { //for 7-8 and GOPS
+	public void printHand2() throws InterruptedException { // for 7-8 and GOPS
 		organizeCards();
 		int width = this.size() > 9 ? 2 : 1;
 		for (String suit : BaseGame.suits) {
@@ -70,7 +74,7 @@ public class Hand extends Deck {
 			}
 		}
 	}
-	
+
 	/**
 	 * ordering this list by rank
 	 */
@@ -101,7 +105,7 @@ public class Hand extends Deck {
 		}
 		this.changeTo(newHand);
 	}
-	
+
 	/**
 	 * ordering this list by suit (uses 'suits' field for priority)
 	 */
@@ -116,7 +120,7 @@ public class Hand extends Deck {
 		}
 		this.changeTo(newHand);
 	}
-	
+
 	/**
 	 * organizes this list by rank, then suit
 	 */
@@ -124,7 +128,7 @@ public class Hand extends Deck {
 		organizeByRank();
 		organizeBySuit();
 	}
-	
+
 	/**
 	 * organizes this list by suit, then rank
 	 */

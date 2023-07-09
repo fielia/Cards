@@ -1,7 +1,7 @@
 package text.backend;
 
 public class Card {
-	
+
 	/**
 	 * card's suit
 	 */
@@ -22,7 +22,7 @@ public class Card {
 	 * if the card has been used to count matched (only used in Seven-Eight)
 	 */
 	private boolean counted;
-	
+
 	/**
 	 * creates a card object
 	 *
@@ -42,56 +42,56 @@ public class Card {
 			default -> Integer.parseInt(rank);
 		};
 	}
-	
+
 	/**
 	 * @return the name of the card
 	 */
 	public String toString() {
 		return this.rank + " of " + this.suit;
 	}
-	
+
 	/**
 	 * @return card's suit
 	 */
 	public String getSuit() {
 		return suit;
 	}
-	
+
 	/**
 	 * @return card's rank
 	 */
 	public String getRank() {
 		return rank;
 	}
-	
+
 	/**
 	 * @return card's rank value
 	 */
 	public int getRankValue() {
 		return rankValue;
 	}
-	
+
 	/**
 	 * @return if the card has been revealed
 	 */
 	public boolean isRevealed() {
 		return revealed;
 	}
-	
+
 	/**
 	 * @param revealed new value for revealed
 	 */
 	public void setRevealed(boolean revealed) {
 		this.revealed = revealed;
 	}
-	
+
 	/**
 	 * @return if this card has been counted
 	 */
 	public boolean isCounted() {
 		return counted;
 	}
-	
+
 	/**
 	 * @param counted new value for counted
 	 */

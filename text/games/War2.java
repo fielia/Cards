@@ -8,26 +8,26 @@ import text.backend.Deck;
 import text.backend.Game;
 
 public class War2 extends Game {
-	
+
 	public int cost() {
 		return 10;
 	}
-	
+
 	public String rules() {
 		return "This is an interactive version of War. The player has to choose a card to place down, which will be " +
-				       "compared with the card the computer chooses. The player with the higher ranked card gets the " +
-				       "point, or both players get a point if they tie.";
+				"compared with the card the computer chooses. The player with the higher ranked card gets the " +
+				"point, or both players get a point if they tie.";
 	}
-	
+
 	public String toString() {
 		return "War (version 2)";
 	}
-	
+
 	@Override
 	protected int playerLimit() {
 		return 2;
 	}
-	
+
 	/**
 	 * the amount of games the player has won
 	 */
@@ -36,7 +36,7 @@ public class War2 extends Game {
 	 * the amount of games the computer has won
 	 */
 	private int gamesB;
-	
+
 	/**
 	 * @return the player that had more victories
 	 */
@@ -49,7 +49,7 @@ public class War2 extends Game {
 			return 1;
 		}
 	}
-	
+
 	public int play() throws InterruptedException {
 		char cont = 'y';
 		Deck deck = new Deck();
@@ -77,7 +77,7 @@ public class War2 extends Game {
 				while (true) {
 					try {
 						System.out.println("Which card do you want to play? Enter its number. Be sure it's the card " +
-								                   "you want.");
+								"you want.");
 						handNum = scanner.nextInt() - 1;
 						break;
 					} catch (IndexOutOfBoundsException e) {

@@ -13,7 +13,7 @@ public class Card extends BaseCard {
 	private int y;
 	int rankValue;
 	boolean counted;
-	
+
 	/**
 	 * creates a card object
 	 *
@@ -32,9 +32,10 @@ public class Card extends BaseCard {
 			default -> Integer.parseInt(rank);
 		};
 	}
-	
+
 	/**
 	 * moves the card to new coordinates
+	 * 
 	 * @param x x coordinate of the new position
 	 * @param y y coordinate of the new position
 	 */
@@ -42,9 +43,10 @@ public class Card extends BaseCard {
 		this.x = x;
 		this.y = y;
 	}
-	
+
 	/**
 	 * calculates if a set of coordinates is within the card
+	 * 
 	 * @param x x coordinate of position in question
 	 * @param y y coordinate of position in question
 	 * @return whether the position is overlapping the card
@@ -52,14 +54,14 @@ public class Card extends BaseCard {
 	public boolean contains(int x, int y) {
 		return (x > this.x && x < (this.x + getWidth()) && y > this.y && y < (this.y + getHeight()));
 	}
-	
+
 	/**
 	 * @return the width of the card
 	 */
 	public int getWidth() {
 		return image.getIconWidth();
 	}
-	
+
 	/**
 	 * @return the height of the card
 	 */
@@ -73,37 +75,38 @@ public class Card extends BaseCard {
 	public int getRankValue() {
 		return rankValue;
 	}
-	
+
 	/**
 	 * @return if this card has been counted
 	 */
 	public boolean isCounted() {
 		return counted;
 	}
-	
+
 	/**
 	 * @param counted new value for counted
 	 */
 	public void setCounted(boolean counted) {
 		this.counted = counted;
 	}
-	
+
 	/**
 	 * @return x coordinate of the card
 	 */
 	public int getX() {
 		return x;
 	}
-	
+
 	/**
 	 * @return y coordinate of the card
 	 */
 	public int getY() {
 		return y;
 	}
-	
+
 	/**
 	 * draws the card
+	 * 
 	 * @param g idk
 	 * @param c component to draw on
 	 */

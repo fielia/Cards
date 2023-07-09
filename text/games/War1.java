@@ -7,26 +7,26 @@ import text.backend.Deck;
 import text.backend.Game;
 
 public class War1 extends Game {
-	
+
 	public int cost() {
 		return 5;
 	}
-	
+
 	public String rules() {
 		return "This game is automatic. It compares the ranks of the top card in each player's deck, and gives a " +
-				       "point to the player that has the card with the higher rank, or a point to both players if the" +
-				       " cards tie in rank.";
+				"point to the player that has the card with the higher rank, or a point to both players if the" +
+				" cards tie in rank.";
 	}
-	
+
 	public String toString() {
 		return "War (version 1)";
 	}
-	
+
 	@Override
 	protected int playerLimit() {
 		return 0;
 	}
-	
+
 	public int play() throws InterruptedException {
 		int pointA = 0;
 		int pointB = 0;
@@ -53,7 +53,7 @@ public class War1 extends Game {
 					System.out.println("Tie!");
 				}
 				System.out.println(Game.getName(0) + "'s Card: " + cardA.getRank() + "\n" +
-						                   Game.getName(1) + "'s Card: " + cardB.getRank() + "\n");
+						Game.getName(1) + "'s Card: " + cardB.getRank() + "\n");
 				Thread.sleep(1000);
 			}
 			if (pointA > pointB) {
@@ -63,7 +63,8 @@ public class War1 extends Game {
 			} else {
 				System.out.println("It was a tie!");
 			}
-			System.out.println(Game.getName(0) + "'s Score: " + pointA + "\n" + Game.getName(1) + "'s Score: " + pointB);
+			System.out
+					.println(Game.getName(0) + "'s Score: " + pointA + "\n" + Game.getName(1) + "'s Score: " + pointB);
 			System.out.print("Would you like to play again? ");
 			again = scanner.next().charAt(0);
 		}
