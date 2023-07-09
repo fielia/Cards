@@ -13,7 +13,7 @@ public class Card extends BaseCard {
 	private int y;
 	int rankValue;
 	boolean counted;
-	
+
 	/**
 	 * creates a card object
 	 *

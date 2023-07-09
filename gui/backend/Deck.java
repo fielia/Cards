@@ -34,7 +34,7 @@ public class Deck extends ArrayList<Card> {
 	/**
 	 * changes the value of each card of a certain rank
 	 *
-	 * @param ranks list of ranks of cards to change
+	 * @param ranks  list of ranks of cards to change
 	 * @param values list new value of the cards
 	 * @throws IndexOutOfBoundsException ranks and values must be of equal length
 	 */
@@ -63,7 +63,8 @@ public class Deck extends ArrayList<Card> {
 	/**
 	 * draws the card at position 'index' in the deck and removes it
 	 *
-	 * @param index index of card extracting from the deck - must be valid for the list
+	 * @param index index of card extracting from the deck - must be valid for the
+	 *              list
 	 * @return the card at position 'index'
 	 */
 	public Card draw(int index) {

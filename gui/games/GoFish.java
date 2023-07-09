@@ -8,23 +8,23 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GoFish extends Game {
-	
+
 	public int cost() {
 		return 15;
 	}
-	
+
 	public String rules() {
 		return "In this classic card game, players ask opponents for cards that they have in their hands. If the " +
-				       "opponent has the card, they fork it over and the player gains a \"match\". If they don't, the" +
-				       " player has to pick up a card from the stock. Once the entire stock is emptied, the player " +
-				       "with the most matches wins!";
+				"opponent has the card, they fork it over and the player gains a \"match\". If they don't, the" +
+				" player has to pick up a card from the stock. Once the entire stock is emptied, the player " +
+				"with the most matches wins!";
 	}
-	
+
 	@Override
 	protected int playerLimit() {
 		return 1;
 	}
-	
+
 	/**
 	 * the amount of games the player has won
 	 */
@@ -33,11 +33,11 @@ public class GoFish extends Game {
 	 * the amount of games the computer has won
 	 */
 	private int gamesB;
-	
+
 	public String toString() {
 		return "Go Fish (broken)";
 	}
-	
+
 	/**
 	 * @return the player that had more victories
 	 */
@@ -50,7 +50,7 @@ public class GoFish extends Game {
 			return 1;
 		}
 	}
-	
+
 	/**
 	 * checks how many overall points comp and player have
 	 *
@@ -65,10 +65,10 @@ public class GoFish extends Game {
 		}
 		Thread.sleep(1000);
 		System.out.println("\nYou got " + pointA + " matches, " + Game.getName(0) + ".\nThe Computer got " +
-				                   pointB + " matches.");
+				pointB + " matches.");
 		if (pointB > pointA) {
 			System.out.println("The Computer wins by " + (pointB - pointA) + " point" + suffix + "! Maybe next time " +
-					                   "you'll win!");
+					"you'll win!");
 			gamesB++;
 		} else if (pointA > pointB) {
 			System.out.println("You win by " + (pointA - pointB) + " point" + suffix + "! Congratulations!");
@@ -78,7 +78,7 @@ public class GoFish extends Game {
 		}
 		Thread.sleep(2000);
 	}
-	
+
 	/**
 	 * unique printHand() method for this class
 	 *
@@ -92,7 +92,7 @@ public class GoFish extends Game {
 			Game.sleep(500);
 		}
 	}
-	
+
 	/**
 	 * adds points if two cards in hand
 	 *
@@ -120,7 +120,7 @@ public class GoFish extends Game {
 		}
 		return point;
 	}
-	
+
 	public int play() throws InterruptedException {
 		gamesA = 0;
 		gamesB = 0;

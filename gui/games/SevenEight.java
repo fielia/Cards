@@ -9,39 +9,39 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SevenEight extends Game {
-	
+
 	public int cost() {
 		return 15;
 	}
-	
+
 	public String rules() {
 		return "This game pits a human player against a computer. The goal is to get a larger amount of plays than " +
-				       "the computer. A play consists of one player placing a card in the center, then the other " +
-				       "trying to beat it. The winner of the play starts the next one. The second player has to play " +
-				       "a card of the same suit as the one the first player played, and higher rank to win the play, " +
-				       "if possible. If not, they can play a card from a chosen superior suit, called the trump, that" +
-				       " \033[3mtrumps\033[0m all other suits, no matter the rank.";
+				"the computer. A play consists of one player placing a card in the center, then the other " +
+				"trying to beat it. The winner of the play starts the next one. The second player has to play " +
+				"a card of the same suit as the one the first player played, and higher rank to win the play, " +
+				"if possible. If not, they can play a card from a chosen superior suit, called the trump, that" +
+				" \033[3mtrumps\033[0m all other suits, no matter the rank.";
 	}
-	
+
 	public String toString() {
 		return "Seven-Eight";
 	}
-	
+
 	protected int playerLimit() {
 		return 1;
 	}
-	
+
 	/**
 	 * checks who won the hand
 	 *
-	 * @param trump suit that is superior
-	 * @param cardA player's card
-	 * @param cardB comp's card
+	 * @param trump         suit that is superior
+	 * @param cardA         player's card
+	 * @param cardB         comp's card
 	 * @param isPlayersTurn who's turn it is now
 	 * @return true if player won the hand, false if comp won
 	 */
 	private boolean compareCards(String trump, Card cardA, Card cardB,
-	                             boolean isPlayersTurn) {
+			boolean isPlayersTurn) {
 		if (cardA.getRankValue() > cardB.getRankValue() && cardA.getSuit().equals(cardB.getSuit())) {
 			isPlayersTurn = true;
 		} else if (cardA.getRankValue() < cardB.getRankValue() && cardA.getSuit().equals(cardB.getSuit())) {
@@ -58,7 +58,7 @@ public class SevenEight extends Game {
 		}
 		return isPlayersTurn;
 	}
-	
+
 	public int play() throws InterruptedException {
 		String trump;
 		int pointA = 0;
@@ -92,7 +92,7 @@ public class SevenEight extends Game {
 				break;
 			} else {
 				System.out.println("That suit isn't one of the four! As a reminder, the suits you can enter are: " +
-						                   "'Spades', 'Hearts', 'Diamonds', and 'Clubs'.");
+						"'Spades', 'Hearts', 'Diamonds', and 'Clubs'.");
 			}
 		}
 		System.out.println("Okay. " + trump + " is now the trump.\nDealing the rest of the cards...\n");
@@ -168,11 +168,11 @@ public class SevenEight extends Game {
 		int outcome;
 		if (pointA > pointB) {
 			System.out.println("You beat the computer by " + (pointA - pointB) + " points! Congratulations, " +
-					                   Game.getName(0) + "!");
+					Game.getName(0) + "!");
 			outcome = 2;
 		} else if (pointA < pointB) {
 			System.out.println("The computer beat you by " + (pointB - pointA) + " points! Better luck next time, + " +
-					                   Game.getName(0) + "!");
+					Game.getName(0) + "!");
 			outcome = 0;
 		} else {
 			System.out.println("You tied with the computer! Nice, " + Game.getName(0) + "!");
