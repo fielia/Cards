@@ -206,7 +206,7 @@ public class GinRummy extends Game {
 		return matches == 4;
 	}
 
-	public int play() throws InterruptedException {
+	public int play(Scanner scanner) throws InterruptedException {
 		centerPile = new ArrayList<>();
 		stock = new Deck();
 		stock.modifyRanks(new String[] { "Ace" }, new int[] { 1 });
@@ -215,7 +215,7 @@ public class GinRummy extends Game {
 		Hand handA = new Hand(10, stock, 1);
 		Hand handB = new Hand(10, stock, 1);
 		System.out.println("\n----------------------------\n\nLet's play Gin Rummy!\n");
-		Game.promptName(1, "Enter player 2's name: ");
+		Game.promptName(1, "Enter player 2's name: ", scanner);
 		while (winner == 0) {
 			System.out.println("\n\nNow it's " + Game.getName(0) + "'s turn. \nHere is your hand:\n");
 			turn(handA, Game.getName(0));

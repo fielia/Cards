@@ -86,10 +86,9 @@ public class BlackJack2 extends Game {
 		return value;
 	}
 
-	public int play() throws InterruptedException {
+	public int play(Scanner scanner) throws InterruptedException {
 		char again = 'y';
 		int bet = 0;
-		Scanner scanner = new Scanner(System.in);
 		while (again == 'y' || again == 'Y') {
 			System.out.println("\n----------------------------\n\nLet's play Blackjack!\n");
 			if (bet != 0) {
@@ -235,7 +234,6 @@ public class BlackJack2 extends Game {
 			} while (again != 'y' && again != 'n' && again != 'Y' && again != 'N');
 		}
 		System.out.println("Okay, hope to see you again soon!");
-		scanner.close();
 		return scoreCheck();
 	}
 }

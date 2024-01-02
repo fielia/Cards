@@ -138,4 +138,13 @@ public class Hand extends ArrayList<Card> {
 		organizeBySuit();
 		organizeByRank();
 	}
+
+	/**
+	 * draws the top card in the deck and removes it
+	 *
+	 * @return the top card
+	 */
+	public Card draw() {
+		return remove(0);
+	}
 }

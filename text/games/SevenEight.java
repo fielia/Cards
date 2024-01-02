@@ -59,10 +59,9 @@ public class SevenEight extends Game {
 		return isPlayersTurn;
 	}
 
-	public int play() throws InterruptedException {
+	public int play(Scanner scanner) throws InterruptedException {
 		String trump;
 		int pointA = 0;
-		Scanner scanner = new Scanner(System.in);
 		int pointB = 0;
 		Card cardA;
 		Card cardB;
@@ -179,7 +178,6 @@ public class SevenEight extends Game {
 			outcome = 1;
 		}
 		System.out.println("The final score was you vs the computer, " + pointA + " points to " + pointB + " points.");
-		scanner.close();
 		return outcome;
 	}
 }

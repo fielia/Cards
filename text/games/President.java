@@ -471,11 +471,10 @@ public class President extends Game {
 		System.out.println("Nice, the " + takenCard + " and the " + givenCard + " have been traded!");
 	}
 
-	public int play() throws InterruptedException {
+	public int play(Scanner scanner) throws InterruptedException {
 		System.out.println("\n----------------------------\n\nLet's play President!\n");
 		int numPeople = 0;
 		do {
-			scanner = new Scanner(System.in);
 			try {
 				System.out.print("How many people do you want to play with? Enter a number from 3 to 7: ");
 				numPeople = scanner.nextInt();
@@ -490,7 +489,7 @@ public class President extends Game {
 		boolean vpMode = numPeople >= 5;
 		int[] hierarchy = new int[numPeople], points = new int[numPeople];
 		for (int i = 1; i < numPeople; i++) {
-			Game.promptName(i, "Enter player " + (i + 1) + "'s name: ");
+			Game.promptName(i, "Enter player " + (i + 1) + "'s name: ", scanner);
 			hands.add(new Hand());
 			hasPassed.add(false);
 		}

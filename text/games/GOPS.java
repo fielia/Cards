@@ -77,7 +77,7 @@ public class GOPS extends Game {
 		}
 	}
 
-	public int play() throws InterruptedException {
+	public int play(Scanner scanner) throws InterruptedException {
 		Hand handA = new Hand();
 		Hand pointA = new Hand();
 		Hand handB = new Hand();
@@ -86,7 +86,6 @@ public class GOPS extends Game {
 		stock.clear();
 		ArrayList<Card> bidCards = new ArrayList<>();
 		int maxPoints = 0;
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("""
 
 				----------------------------
@@ -183,7 +182,6 @@ public class GOPS extends Game {
 			outcome = 1;
 		}
 		Game.sleep(5000);
-		scanner.close();
 		return outcome;
 	}
 }

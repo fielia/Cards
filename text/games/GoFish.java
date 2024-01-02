@@ -121,12 +121,11 @@ public class GoFish extends Game {
 		return point;
 	}
 
-	public int play() throws InterruptedException {
+	public int play(Scanner scanner) throws InterruptedException {
 		gamesA = 0;
 		gamesB = 0;
 		char again = 'y';
 		System.out.println("\n----------------------------\n\nLet's play Go Fish!\n");
-		Scanner scanner = new Scanner(System.in);
 		while (again == 'y' || again == 'Y') {
 			int pointA = 0;
 			int pointB = 0;
@@ -262,7 +261,6 @@ public class GoFish extends Game {
 			System.out.println("\nWould you like to play again, " + Game.getName(0) + "?");
 			again = scanner.next().charAt(0);
 		}
-		scanner.close();
 		return overallWinner();
 	}
 }

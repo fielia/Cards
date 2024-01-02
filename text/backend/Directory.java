@@ -3,6 +3,7 @@ package text.backend;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import text.games.BlackJack;
@@ -12,6 +13,7 @@ import text.games.GOPS;
 import text.games.GinRummy;
 import text.games.GoFish;
 import text.games.President;
+import text.games.RealWar;
 import text.games.SevenEight;
 import text.games.Trash;
 import text.games.War1;
@@ -26,28 +28,28 @@ public class Directory {
 	 * @return game chosen
 	 * @throws InterruptedException Thread.sleep() throws this
 	 */
-	private static Game getGame(ArrayList<Game> games) throws InterruptedException {
+	private static Game getGame(ArrayList<Game> games, Scanner scanner) throws InterruptedException {
 		int highestName = 0, highestPeople = 0, highestCost = 0;
 		for (Game game : games) {
 			highestName = Math.max(game.toString().length(), highestName);
 			highestPeople = Math.max(String.valueOf(game.playerLimit()).length(), highestPeople);
 			highestCost = Math.max(String.valueOf(game.cost()).length(), highestCost);
 		}
-		Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < games.size(); i++) {
 			String limitSuffix = games.get(i).playerLimit() == 1 ? "person" : "people";
 			int width = games.size() > 9 ? 2 : 1;
-
+			
 			System.out.printf("%" + width + "d: %-" + (highestName + 1) + "s ", i + 1, games.get(i) + ".");
 			System.out.printf("As many as %" + highestPeople + "d %-6s can play. ", games.get(i).playerLimit(),
-					limitSuffix);
+			limitSuffix);
 			System.out.printf("It costs %" + highestCost + "d coins to play.\n\n", games.get(i).cost());
 			Game.sleep(500);
 		}
 		while (true) {
 			try {
 				System.out.println("\nYou have " + Game.getCoins() + " coins.\nWhich game do you want to play? Select" +
-						" the corresponding number, or input 0 to exit.");
+						" the corresponding number, or input 0 to exit."); 
+
 				int index = scanner.nextInt();
 				scanner.nextLine();
 				if (index < 0 || index > games.size()) {
@@ -61,7 +63,6 @@ public class Directory {
 			} catch (InputMismatchException e) {
 				System.out.println("That isn't a number! Try again.");
 			}
-			scanner.close();
 		}
 	}
 
@@ -71,8 +72,9 @@ public class Directory {
 				"supply a virtual spin to a classic game! This experience is fueled by coins, " +
 				"which you need to play games. You earn coins after wins! Once you lose too many " +
 				"coins, we automatically refill them for you.\n");
+		Scanner scanner = new Scanner(System.in);
 		Game.addCoins(100);
-		Game.promptName(0, "Please enter your name, so we can personalize your experience: ");
+		Game.promptName(0, "Please enter your name, so we can personalize your experience: ", scanner);
 		ArrayList<Game> games = new ArrayList<>() {
 			{
 				add(new BlackJack());
@@ -82,6 +84,7 @@ public class Directory {
 				add(new GoFish());
 				add(new GOPS());
 				add(new President());
+				add(new RealWar());
 				add(new SevenEight());
 				add(new Trash());
 				add(new War1());
@@ -89,10 +92,9 @@ public class Directory {
 			}
 		};
 		Collections.shuffle(games);
-		Scanner scanner = new Scanner(System.in);
 		while (true) {
 			System.out.println("\n\n");
-			Game game = getGame(games);
+			Game game = getGame(games, scanner);
 			if (game == null) {
 				break;
 			}
@@ -133,7 +135,7 @@ public class Directory {
 				break;
 			}
 			Game.subtractCoins(game.cost());
-			int earning = game.play();
+			int earning = game.play(scanner);
 			Game.addCoins(game.cost() * earning);
 			Game.checkCoins();
 			System.out.println("You earned " + game.cost() * earning + " coins.");

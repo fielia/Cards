@@ -50,10 +50,9 @@ public class War2 extends Game {
 		}
 	}
 
-	public int play() throws InterruptedException {
+	public int play(Scanner scanner) throws InterruptedException {
 		char cont = 'y';
 		Deck deck = new Deck();
-		Scanner scanner = new Scanner(System.in);
 		while (cont == 'y' || cont == 'Y') {
 			System.out.println("\n----------------------------\n\nLet's play War!\n");
 			int pointA = 0;
@@ -118,7 +117,6 @@ public class War2 extends Game {
 			System.out.print("Would you like to play again? ");
 			cont = scanner.next().charAt(0);
 		}
-		scanner.close();
 		return overallWinner();
 	}
 }

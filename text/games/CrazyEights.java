@@ -204,8 +204,7 @@ public class CrazyEights extends Game {
 		Thread.sleep(1500);
 	}
 
-	public int play() throws InterruptedException {
-		Scanner scanner = new Scanner(System.in);
+	public int play(Scanner scanner) throws InterruptedException {
 		System.out.println("\n----------------------------\n\nLet's play Crazy Eights!\n");
 		int numPeople = 0, numComps = 0;
 		do {
@@ -411,7 +410,6 @@ public class CrazyEights extends Game {
 		}
 		Thread.sleep(1000);
 		System.out.println("\n\nPlease play again soon!");
-		scanner.close();
 		return winner;
 	}
 }

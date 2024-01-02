@@ -1,12 +1,12 @@
-package text.games;
-
-import java.util.Scanner;
+package gui.games;
 
 import text.backend.Card;
 import text.backend.Deck;
 import text.backend.Game;
 
-public class War1 extends Game {
+import java.util.Scanner;
+
+public class RealWar extends Game {
 
 	public int cost() {
 		return 5;
@@ -27,10 +27,11 @@ public class War1 extends Game {
 		return 0;
 	}
 
-	public int play(Scanner scanner) throws InterruptedException {
+	public int play() throws InterruptedException {
 		int pointA = 0;
 		int pointB = 0;
-		Game.promptName(1, "Enter player 2's name: ", scanner);
+		Scanner scanner = new Scanner(System.in);
+		Game.promptName(1, "Enter player 2's name: ");
 		Card cardA;
 		Card cardB;
 		char again = 'y';
@@ -67,6 +68,7 @@ public class War1 extends Game {
 			System.out.print("Would you like to play again? ");
 			again = scanner.next().charAt(0);
 		}
-		return 1;
+		scanner.close();
+		return 2;
 	}
 }

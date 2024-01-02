@@ -212,13 +212,12 @@ public class Trash extends Game {
 		return centerCard.getRank().equals("King");
 	}
 
-	public int play() throws InterruptedException {
+	public int play(Scanner scanner) throws InterruptedException {
 		int roundNo = 1;
 		System.out.println("\n----------------------------\n\nLet's play Trash!\n");
 		boolean nextRound = true;
-		Game.promptName(1, "Enter player 2's name: ");
+		Game.promptName(1, "Enter player 2's name: ", scanner);
 		int cards;
-		Scanner scanner = new Scanner(System.in);
 		while (true) {
 			try {
 				System.out.print("How many cards do you want to start with? Enter a number less than 10: ");
@@ -285,7 +284,6 @@ public class Trash extends Game {
 				break;
 			}
 		}
-		scanner.close();
 		return 1;
 	}
 }

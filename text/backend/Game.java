@@ -58,8 +58,7 @@ public class Game {
 	 * @param index   player's index
 	 * @param message prompt message to ask for the name
 	 */
-	public static void promptName(int index, String message) {
-		Scanner scanner = new Scanner(System.in);
+	public static void promptName(int index, String message, Scanner scanner) {
 		if (names.size() <= index) {
 			while (true) {
 				System.out.print(message);
@@ -76,7 +75,6 @@ public class Game {
 				}
 			}
 		}
-		scanner.close();
 	}
 
 	/**
@@ -135,7 +133,7 @@ public class Game {
 	 * @return if the player won the game (0 = loss, 1 = tie, 2 = won)
 	 * @throws InterruptedException Thread.sleep() throws this
 	 */
-	public int play() throws InterruptedException {
+	public int play(Scanner scanner) throws InterruptedException {
 		System.out.println("Error: Something went wrong. Please try again.");
 		return 1;
 	}
