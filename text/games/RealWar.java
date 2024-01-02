@@ -90,6 +90,13 @@ public class RealWar extends Game {
 			System.out.print("Would you like to play again? ");
 			again = scanner.next().charAt(0);
 		}
+		if (winsA > winsB) {
+			System.out.println("Congrats " + Game.getName(0) + ", you had more wins!");
+		} else if (winsA < winsB) {
+			System.out.println("Congrats " + Game.getName(1) + ", you had more wins!");
+		} else {
+			System.out.println("Both players had the same amount of wins.");
+		}
 		return 1;
 	}
 }
