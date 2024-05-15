@@ -15,17 +15,15 @@ public class Hand extends ArrayList<Card> {
 	 *
 	 * @param num                 amount of cards to put in the deck
 	 * @param deck                deck to extract cards from
-	 * @param playersToSplitCards the amount of players splitting the deck
-	 *                            (simulates dealing)
+	 * @param playersLeft         the amount of players splitting the deck (simulates dealing)
 	 */
-	public Hand(int num, Deck deck, int playersToSplitCards) {
-		playersToSplitCards--;
-		if (playersToSplitCards <= 0) {
-			for (int i = 0; i < num; i++) {
-				add(deck.draw());
-			}
+	public Hand(int num, Deck deck, int playersLeft) {
+		playersLeft--;
+		if (playersLeft <= 0) {
+			addAll(deck);
+			deck.clear();
 		} else {
-			for (int i = 0; i < num * playersToSplitCards; i += playersToSplitCards) {
+			for (int i = 0; i < num * playersLeft; i += playersLeft) {
 				add(deck.draw(i));
 			}
 		}

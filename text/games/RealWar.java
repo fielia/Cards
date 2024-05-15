@@ -14,7 +14,7 @@ public class RealWar extends Game {
 	}
 
 	public String rules() {
-		return "This game is automatic. It compares the ranks of the top card in each player's deck, and gives both cards to the player with the higher rank, or completes a \"war\" in the ranks are the same.";
+		return "This game is automatic. It compares the ranks of the top card in each player's deck, and gives both cards to the player with the higher rank, or completes a \"war\" in the ranks are the same.\nWARNING: the game might take a while to run.";
 	}
 
 	public String toString() {
@@ -27,26 +27,25 @@ public class RealWar extends Game {
 	}
 
 	private int compare(Hand handA, Hand handB, Hand cardsInPlay) {
-		Card cardA = cardsInPlay.get(0);
-		Card cardB = cardsInPlay.get(1);
+		Card cardA = cardsInPlay.get(cardsInPlay.size() - 2);
+		Card cardB = cardsInPlay.get(cardsInPlay.size() - 1);
 		int wars = 0;
 		if (cardA.getRankValue() > cardB.getRankValue()) {
 			handA.addAll(cardsInPlay);
-			System.out.println("Point for " + Game.getName(0) + "!");
 		} else if (cardA.getRankValue() < cardB.getRankValue()) {
 			handB.addAll(cardsInPlay);
-			System.out.println("Point for " + Game.getName(1) + "!");
 		} else {
 			wars = tie(handA, handB, cardsInPlay);
-			System.out.println("Tie!");
 		}
-		System.out.println(Game.getName(0) + "'s Card: " + cardA.getRank() + "\n" +
-				Game.getName(1) + "'s Card: " + cardB.getRank() + "\n");
 		return wars;
 	}
 
 	private int tie(Hand handA, Hand handB, Hand cardsInPlay) {
-		for (int i = 0; i < 3; i++) {
+		System.out.println("Oh! A war of " + cardsInPlay.get(cardsInPlay.size() - 1).getRank() + "s has begun!");
+		if (handA.size() == 0 || handB.size() == 0) {
+			return 0;
+		}
+		for (int i = 0; i < 4; i++) {
 			if (handA.size() == 1 || handB.size() == 1) {
 				break;
 			}
@@ -68,14 +67,14 @@ public class RealWar extends Game {
 			int numWars = 0;
 			Deck deck = new Deck();
 			Hand handA = new Hand(26, deck, 2);
-			Hand handB = new Hand(26, deck, 2);
+			Hand handB = new Hand(26, deck, 1);
 			Hand cardsInPlay = new Hand();
 			while (handA.size() != 0 && handB.size() != 0) {
 				cardsInPlay.add(handA.draw());
 				cardsInPlay.add(handB.draw());
 				numWars += compare(handA, handB, cardsInPlay);
 				numBattles++;
-				Thread.sleep(1000);
+				cardsInPlay.clear();
 			}
 			if (handA.size() == 0) {
 				System.out.println("Congrats " + Game.getName(1) + ", you won!");
