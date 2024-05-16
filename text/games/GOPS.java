@@ -7,6 +7,7 @@ import text.backend.Card;
 import text.backend.Deck;
 import text.backend.Game;
 import text.backend.Hand;
+import text.backend.Card.Suit;
 
 public class GOPS extends Game {
 
@@ -44,9 +45,9 @@ public class GOPS extends Game {
 	private int calcPoints(Hand point) {
 		int pointTotal = 0;
 		for (Card card : point) {
-			if (card.getSuit().equals("Diamonds")) {
+			if (card.getSuit() == Suit.DIAMONDS) {
 				pointTotal += card.getRankValue();
-			} else if (card.getSuit().equals("Hearts")) {
+			} else if (card.getSuit() == Suit.HEARTS) {
 				pointTotal += card.getRankValue() * 2;
 			}
 		}
@@ -106,14 +107,14 @@ public class GOPS extends Game {
 			deck.modifyRanks(new String[] { "Ace" }, new int[] { 1 });
 		}
 		for (Card card : deck) {
-			if (card.getSuit().equals("Spades")) {
+			if (card.getSuit() == Suit.SPADES) {
 				handA.add(card);
-			} else if (card.getSuit().equals("Clubs")) {
+			} else if (card.getSuit() == Suit.CLUBS) {
 				handB.add(card);
-			} else if (card.getSuit().equals("Diamonds")) {
+			} else if (card.getSuit() == Suit.DIAMONDS) {
 				maxPoints += card.getRankValue();
 				stock.add(card);
-			} else if (card.getSuit().equals("Hearts") && multipleSuits) {
+			} else if (card.getSuit() == Suit.HEARTS && multipleSuits) {
 				maxPoints += card.getRankValue() * 2;
 				stock.add(card);
 			}

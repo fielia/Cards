@@ -2,6 +2,8 @@ package text.backend;
 
 import java.util.ArrayList;
 
+import text.backend.Card.Suit;
+
 public class Hand extends ArrayList<Card> {
 
 	/**
@@ -13,9 +15,10 @@ public class Hand extends ArrayList<Card> {
 	/**
 	 * fills the hand with some cards in the deck across all the hands
 	 *
-	 * @param num                 amount of cards to put in the deck
-	 * @param deck                deck to extract cards from
-	 * @param playersLeft         the amount of players splitting the deck (simulates dealing)
+	 * @param num         amount of cards to put in the deck
+	 * @param deck        deck to extract cards from
+	 * @param playersLeft the amount of players splitting the deck (simulates
+	 *                    dealing)
 	 */
 	public Hand(int num, Deck deck, int playersLeft) {
 		playersLeft--;
@@ -64,13 +67,27 @@ public class Hand extends ArrayList<Card> {
 	public void printHand2() throws InterruptedException { // for 7-8 and GOPS
 		organizeCards();
 		int width = this.size() > 9 ? 2 : 1;
-		for (String suit : Game.suits) {
+		for (Suit suit : Game.suits) {
 			for (int i = 0; i < this.size(); i++) {
-				if (this.get(i).getSuit().equals(suit)) {
+				if (this.get(i).getSuit() == suit) {
 					this.get(i).setCounted(false);
 					System.out.printf("%" + width + "d: " + this.get(i) + "\n", i + 1);
 					Game.sleep(75);
 				}
+			}
+		}
+	}
+
+	public void printHand3() { // for Kings
+		if (this.size() == 0) {
+			System.out.println("Empty.");
+		}
+		for (int i = 0; i < this.size(); i++) {
+			System.out.print(this.get(i));
+			if (i != this.size() - 1) {
+				System.out.print(", ");
+			} else {
+				System.out.println(".");
 			}
 		}
 	}
@@ -82,9 +99,9 @@ public class Hand extends ArrayList<Card> {
 		Hand newHand = new Hand();
 		int totalCardsAdded = 0;
 		int newIndex = 0;
-		for (String suit : Game.suits) {
+		for (Suit suit : Game.suits) {
 			for (Card card : this) {
-				if (card.getSuit().equals(suit)) {
+				if (card.getSuit() == suit) {
 					try {
 						for (Card otherCard : newHand) {
 							if (card.getRankValue() < otherCard.getRankValue()) {
@@ -111,9 +128,9 @@ public class Hand extends ArrayList<Card> {
 	 */
 	private void organizeBySuit() {
 		Hand newHand = new Hand();
-		for (String suit : Game.suits) {
+		for (Suit suit : Game.suits) {
 			for (Card card : this) {
-				if (card.getSuit().equals(suit)) {
+				if (card.getSuit() == suit) {
 					newHand.add(card);
 				}
 			}
@@ -144,5 +161,11 @@ public class Hand extends ArrayList<Card> {
 	 */
 	public Card draw() {
 		return remove(0);
+	}
+
+	public void add(Hand otherHand) {
+		for (Card card : otherHand) {
+			this.add(card);
+		}
 	}
 }

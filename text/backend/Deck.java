@@ -19,9 +19,10 @@ public class Deck extends ArrayList<Card> {
 	 */
 	public Deck(int decks) {
 		String[] ranks = new String[] { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
+		String[] suits = new String[] { "Spades", "Hearts", "Diamonds", "Clubs" };
 		for (int i = 0; i < decks; i++) {
 			for (String rank : ranks) {
-				for (String suit : Game.suits) {
+				for (String suit : suits) {
 					this.add(new Card(rank, suit));
 				}
 			}
@@ -76,5 +77,23 @@ public class Deck extends ArrayList<Card> {
 		Card drawnCard = this.get(index);
 		this.remove(index);
 		return drawnCard;
+	}
+
+	/**
+	 * deals cards into a set of hands
+	 * 
+	 * @param hands    the set of hands to deal to
+	 * @param numCards the amount of cards to deal to
+	 *                 <ul>
+	 *                 <li>Note: the length of hands * numCards must be less than
+	 *                 52</li>
+	 *                 </ul>
+	 */
+	public void dealCards(ArrayList<Hand> hands, int numCards) {
+		for (int i = 0; i < numCards; i++) {
+			for (Hand hand : hands) {
+				hand.add(draw());
+			}
+		}
 	}
 }

@@ -7,6 +7,7 @@ import text.backend.Card;
 import text.backend.Deck;
 import text.backend.Game;
 import text.backend.Hand;
+import text.backend.Card.Suit;
 
 public class SevenEight extends Game {
 
@@ -40,15 +41,15 @@ public class SevenEight extends Game {
 	 * @param isPlayersTurn who's turn it is now
 	 * @return true if player won the hand, false if comp won
 	 */
-	private boolean compareCards(String trump, Card cardA, Card cardB,
+	private boolean compareCards(Suit trump, Card cardA, Card cardB,
 			boolean isPlayersTurn) {
-		if (cardA.getRankValue() > cardB.getRankValue() && cardA.getSuit().equals(cardB.getSuit())) {
+		if (cardA.getRankValue() > cardB.getRankValue() && cardA.getSuit() == cardB.getSuit()) {
 			isPlayersTurn = true;
-		} else if (cardA.getRankValue() < cardB.getRankValue() && cardA.getSuit().equals(cardB.getSuit())) {
+		} else if (cardA.getRankValue() < cardB.getRankValue() && cardA.getSuit() == cardB.getSuit()) {
 			isPlayersTurn = false;
-		} else if (cardA.getSuit().equals(trump)) {
+		} else if (cardA.getSuit() == trump) {
 			isPlayersTurn = true;
-		} else if (cardB.getSuit().equals(trump)) {
+		} else if (cardB.getSuit() == trump) {
 			isPlayersTurn = false;
 		}
 		if (isPlayersTurn) {
@@ -60,7 +61,7 @@ public class SevenEight extends Game {
 	}
 
 	public int play(Scanner scanner) throws InterruptedException {
-		String trump;
+		Suit trump;
 		int pointA = 0;
 		int pointB = 0;
 		Card cardA;
@@ -68,8 +69,8 @@ public class SevenEight extends Game {
 		Deck deck = new Deck();
 		boolean isPlayersTurn = true;
 		System.out.println("\n----------------------------\n\nLet's play Seven - Eight!\n");
-		deck.removeIf(card -> !(card.getRankValue() > 7 || (card.getRankValue() == 7 && (card.getSuit().equals(
-				"Spades") || card.getSuit().equals("Hearts")))));
+		deck.removeIf(card -> !(card.getRankValue() > 7
+				|| (card.getRankValue() == 7 && (card.getSuit() == Suit.SPADES || card.getSuit() == Suit.HEARTS))));
 		Hand handA = new Hand(5, deck, 2);
 		Hand handB = new Hand(5, deck, 2);
 		System.out.println("You have received 5 cards. Here they are:");
@@ -78,16 +79,16 @@ public class SevenEight extends Game {
 			System.out.println("Which suit do you want to be trump? Input the suit name.");
 			char trumpChoice = scanner.next().toLowerCase().charAt(0);
 			if (trumpChoice == 's') {
-				trump = "Spades";
+				trump = Suit.SPADES;
 				break;
 			} else if (trumpChoice == 'h') {
-				trump = "Hearts";
+				trump = Suit.HEARTS;
 				break;
 			} else if (trumpChoice == 'd') {
-				trump = "Diamonds";
+				trump = Suit.DIAMONDS;
 				break;
 			} else if (trumpChoice == 'c') {
-				trump = "Clubs";
+				trump = Suit.CLUBS;
 				break;
 			} else {
 				System.out.println("That suit isn't one of the four! As a reminder, the suits you can enter are: " +
@@ -118,7 +119,7 @@ public class SevenEight extends Game {
 					}
 				}
 				for (Card card : handB) {
-					if (cardA.getSuit().equals(card.getSuit())) {
+					if (cardA.getSuit() == card.getSuit()) {
 						handBPlayable.add(card);
 					}
 				}
@@ -131,7 +132,7 @@ public class SevenEight extends Game {
 			} else {
 				cardB = handB.get((int) (Math.random() * handB.size()));
 				for (Card card : handA) {
-					if (card.getSuit().equals(cardB.getSuit())) {
+					if (card.getSuit() == cardB.getSuit()) {
 						handAPlayable.add(card);
 						Game.sleep(250);
 					}

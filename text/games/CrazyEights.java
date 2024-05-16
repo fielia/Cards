@@ -59,7 +59,7 @@ public class CrazyEights extends Game {
 	private ArrayList<Card> calcPossibleCards(Hand hand) {
 		ArrayList<Card> possibleCards = new ArrayList<>();
 		for (Card card : hand) {
-			if (card.getSuit().equals(centerCard.getSuit()) || card.getRank().equals(centerCard.getRank())
+			if (card.getSuit() == centerCard.getSuit() || card.getRank().equals(centerCard.getRank())
 					|| card.getRankValue() == 8) {
 				possibleCards.add(card);
 			}

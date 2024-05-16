@@ -5,18 +5,7 @@ import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import text.games.BlackJack;
-import text.games.BlackJack2;
-import text.games.CrazyEights;
-import text.games.GOPS;
-import text.games.GinRummy;
-import text.games.GoFish;
-import text.games.President;
-import text.games.RealWar;
-import text.games.SevenEight;
-import text.games.Trash;
-import text.games.War1;
-import text.games.War2;
+import text.games.*;
 
 public class Directory {
 
@@ -37,17 +26,17 @@ public class Directory {
 		for (int i = 0; i < games.size(); i++) {
 			String limitSuffix = games.get(i).playerLimit() == 1 ? "person" : "people";
 			int width = games.size() > 9 ? 2 : 1;
-			
+
 			System.out.printf("%" + width + "d: %-" + (highestName + 1) + "s ", i + 1, games.get(i) + ".");
 			System.out.printf("As many as %" + highestPeople + "d %-6s can play. ", games.get(i).playerLimit(),
-			limitSuffix);
+					limitSuffix);
 			System.out.printf("It costs %" + highestCost + "d coins to play.\n\n", games.get(i).cost());
 			Game.sleep(500);
 		}
 		while (true) {
 			try {
 				System.out.println("\nYou have " + Game.getCoins() + " coins.\nWhich game do you want to play? Select" +
-						" the corresponding number, or input 0 to exit."); 
+						" the corresponding number, or input 0 to exit.");
 
 				int index = scanner.nextInt();
 				scanner.nextLine();
@@ -82,6 +71,7 @@ public class Directory {
 				add(new GinRummy());
 				add(new GoFish());
 				add(new GOPS());
+				add(new Kings());
 				add(new President());
 				add(new RealWar());
 				add(new SevenEight());

@@ -3,12 +3,14 @@ package text.backend;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import text.backend.Card.Suit;
+
 public class Game {
 
 	/**
 	 * suit priority order for project, ordered highest to lowest
 	 */
-	static final String[] suits = new String[] { "Hearts", "Spades", "Clubs", "Diamonds" };
+	static final Suit[] suits = new Suit[] { Suit.SPADES, Suit.HEARTS, Suit.DIAMONDS, Suit.CLUBS };
 
 	/**
 	 * project names (global)
@@ -64,7 +66,7 @@ public class Game {
 				System.out.print(message);
 				setName(index, scanner.nextLine());
 				System.out.print("Does the name '" + names.get(index) + "' work for you? ");
-				char works = scanner.next().toLowerCase().charAt(0);
+				char works = scanner.nextLine().toLowerCase().charAt(0);
 				if (works == 'n') {
 					System.out.println("Okay, you can try again.\n");
 				} else if (works == 'y') {

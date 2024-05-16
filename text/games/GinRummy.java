@@ -146,8 +146,8 @@ public class GinRummy extends Game {
 								&& card3.getRankValue() + 1 == card4.getRankValue()) ||
 								(card1.getRankValue() == 14 && card2.getRankValue() == 2 && card3.getRankValue() == 3
 										&& card4.getRankValue() == 4))
-								&& card1.getSuit().equals(card2.getSuit()) &&
-								card3.getSuit().equals(card2.getSuit()) && card3.getSuit().equals(card4.getSuit())) &&
+								&& card1.getSuit() == card2.getSuit() &&
+								card3.getSuit() == card2.getSuit() && card3.getSuit() == card4.getSuit()) &&
 								(!card1.isCounted() && !card2.isCounted() && !card3.isCounted()
 										&& !card4.isCounted())) {
 							matches += 2;
@@ -168,7 +168,7 @@ public class GinRummy extends Game {
 				for (Card card3 : hand) {
 					if (((card1.getRankValue() + 1 == card2.getRankValue()
 							&& card2.getRankValue() + 1 == card3.getRankValue() &&
-							card2.getSuit().equals(card3.getSuit()) && card2.getSuit().equals(card1.getSuit())) ||
+							card2.getSuit() == card3.getSuit() && card2.getSuit() == card1.getSuit()) ||
 							(card1.getRankValue() == 14 && card2.getRankValue() == 2 && card3.getRankValue() == 3))
 							&& !(card1.isCounted()
 									|| card2.isCounted() || card3.isCounted())) {
@@ -187,8 +187,8 @@ public class GinRummy extends Game {
 				for (Card card2 : hand) {
 					if ((hand.get(i).getRank().equals(card2.getRank()) && hand.get(i).getRank().equals(card1.getRank()))
 							&&
-							(!hand.get(i).getSuit().equals(card1.getSuit())
-									&& !hand.get(i).getSuit().equals(card2.getSuit()))
+							(hand.get(i).getSuit() != card1.getSuit()
+									&& hand.get(i).getSuit() != card2.getSuit())
 							&& !(hand.get(i).isCounted() || card1.isCounted() || card2.isCounted())) {
 						card1.setCounted(true);
 						hand.get(i).setCounted(true);

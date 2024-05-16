@@ -9,6 +9,7 @@ import text.backend.Card;
 import text.backend.Deck;
 import text.backend.Game;
 import text.backend.Hand;
+import text.backend.Card.Suit;
 
 public class President extends Game {
 
@@ -248,7 +249,7 @@ public class President extends Game {
 		boolean firstTime = true;
 		for (Hand hand : hands) {
 			for (Card card : hand) {
-				if (card.getRank().equals("3") && card.getSuit().equals("Spades")) {
+				if (card.getRank().equals("3") && card.getSuit() == Suit.SPADES) {
 					first = hands.indexOf(hand);
 				}
 			}
@@ -345,7 +346,7 @@ public class President extends Game {
 				}
 				for (Card card : hand) {
 					if (card.getRankValue() == hand.get(index).getRankValue()
-							&& !card.getSuit().equals(hand.get(index).getSuit())) {
+							&& card.getSuit() != hand.get(index).getSuit()) {
 						total++;
 					}
 				}

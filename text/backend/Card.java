@@ -2,10 +2,22 @@ package text.backend;
 
 public class Card {
 
+	public enum Suit {
+		SPADES,
+		HEARTS,
+		DIAMONDS,
+		CLUBS
+	}
+
+	private enum Color {
+		RED,
+		BLACK
+	}
+
 	/**
 	 * card's suit
 	 */
-	private final String suit;
+	private final Suit suit;
 	/**
 	 * card's rank
 	 */
@@ -22,6 +34,10 @@ public class Card {
 	 * if the card has been used to count matched (only used in Seven-Eight)
 	 */
 	private boolean counted;
+	/**
+	 * the color (red or black) of the card
+	 */
+	private Color color;
 
 	/**
 	 * creates a card object
@@ -31,7 +47,13 @@ public class Card {
 	 */
 	public Card(String rank, String suit) {
 		this.rank = rank;
-		this.suit = suit;
+		this.suit = switch (suit) {
+			case "Hearts" -> Suit.HEARTS;
+			case "Diamonds" -> Suit.DIAMONDS;
+			case "Spades" -> Suit.SPADES;
+			case "Clubs" -> Suit.CLUBS;
+			default -> null;
+		};
 		this.revealed = false;
 		this.counted = false;
 		this.rankValue = switch (rank) {
@@ -41,19 +63,33 @@ public class Card {
 			case "Ace" -> 14;
 			default -> Integer.parseInt(rank);
 		};
+		this.color = switch (suit) {
+			case "Hearts" -> Color.RED;
+			case "Diamonds" -> Color.RED;
+			case "Spades" -> Color.BLACK;
+			case "Clubs" -> Color.BLACK;
+			default -> null;
+		};
 	}
 
 	/**
 	 * @return the name of the card
 	 */
 	public String toString() {
-		return this.rank + " of " + this.suit;
+		String suit = switch (this.suit) {
+			case HEARTS -> "Hearts";
+			case DIAMONDS -> "Diamonds";
+			case SPADES -> "Spades";
+			case CLUBS -> "Clubs";
+			default -> null;
+		};
+		return this.rank + " of " + suit;
 	}
 
 	/**
 	 * @return card's suit
 	 */
-	public String getSuit() {
+	public Suit getSuit() {
 		return suit;
 	}
 
@@ -97,5 +133,12 @@ public class Card {
 	 */
 	public void setCounted(boolean counted) {
 		this.counted = counted;
+	}
+
+	/**
+	 * @return color of the card
+	 */
+	public Color getColor() {
+		return color;
 	}
 }
