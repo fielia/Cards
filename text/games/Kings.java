@@ -15,7 +15,11 @@ public class Kings extends Game {
 	}
 
 	public String rules() {
-		return "In this card game, players take turns placing cards on piles until they run out of cards. On their turn, they can either place a card of opposite color and one lower rank than the bottom card of a pile (placing any card if it's the first in the pile), place a card of opposite color and one lower rank than the bottom card of a foundational pile (placing a king of any suit if it's the first in the pile), or move a whole pile onto another one, given the first card of the pile being moved is of opposite color and one lower rank than the bottom card of the pile it is moving onto. The player plays until there are no moves left for them, at which point it is the next player's turn.";
+		String message = "In this card game, players take turns placing cards on piles until they run out of cards. On their turn, they can:\n";
+		String indent = "1) place a card of opposite color and one lower rank than the bottom card of a pile (placing any card if it's the first in the pile),\n2) place a card of opposite color and one lower rank than the bottom card of a foundational pile (placing a king of any suit if it's the first in the pile), or\n3) move a whole pile onto another one, given the first card of the pile being moved is of opposite color and one lower rank than the bottom card of the pile it is moving onto.\n";
+		message += indent.indent(4);
+		message += "The player plays until there are no moves left for them, at which point it is the next player's turn.";
+		return message;
 	}
 
 	@Override
