@@ -16,13 +16,7 @@ public class CrazyEights extends Game {
 	}
 
 	public String rules() {
-		return "This multiplayer game has anywhere from 3 to 25 players, with the option to have all of them (except " +
-				"one) be controlled by the computer. You have to choose a card from your hand that either has " +
-				"the same rank as the card in the center, the same suit as the card in the center, or is an 8." +
-				" If you can't play anything, you have to pick up a card. 8s are wild, meaning that the player" +
-				" that played an 8 can change the suit to whatever they'd like. The first player to get rid of" +
-				" all their cards wins! From there, players are ranked based on the amount of cards left in " +
-				"their hand.\n";
+		return "This multiplayer game has anywhere from 2 to 40 players, with the option to have all of them (except one, which has to be a human player) be controlled by either a human or a computer. You have to choose a card from your hand that either has the same rank as the card in the center, the same suit as the card in the center, or is an 8. If you can't play anything, you have to pick up a card. 8s are wild, meaning that the player that played an 8 can change the suit to whatever they'd like. The first player to get rid of all their cards wins! From there, players are ranked based on the amount of cards left in their hand.\n";
 	}
 
 	/**
